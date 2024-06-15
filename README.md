@@ -1,45 +1,31 @@
-# Nuant FE Test
+# Nuant FE Test - nandramihnea version
 
-This project uses vite react-ts template which provides a minimal setup to get React working in Vite with ESLint rules.
+Demo link: [Tailwind](https://tailwindcss.com/)
 
-It's been configured with Tailwindcss in case you want to use it Pokenode to retrieve the data of Pokemons
+In this repo you will find everything you need to know about how I went on implementing the task.
+Starting from ideation phase to implementation and deployment in the end.
 
-- [Pokenode](https://pokenode-ts.vercel.app/) (hint for the pokenode usage, PokemonClient has very helpful functions like `listPokemons`, `listTypes`, `getPokemonById` and `getPokemonByName` and many options more!) 
-- [Tailwind](https://tailwindcss.com/)
+### Ideation phase
 
-The purpose of the test is to implement an app that have the ability of :
+![Screenshot](ideation.png)
 
-- Search for Pokemon by `name` and the posibility to filter the results by `type`
-  (User can search by name, user can filter pokemons by type, user can do both at the same time also)
-- Display the search results with enough detail to be able to identify to which Pokemon each result belongs.(Name and a image would do)
-- View more information about the Pokemon on a dedicated page by clicking a search result. (You can display Name, different sprites, weight, height and basic information, dealing with linked entities will be bonus point but arent really mandatory).
-- See the previous search results when navigating back to the search page from the pokemon details page.
+In this image you can see what was my tought proccess during the ideation phase:
 
-So basically something like:
-![Screenshot](screenshot.png)
+- Firstly copied the tasks to be done in order to see them more clearly
+- Afterwards decided what routes should the app have
+- Broke down the routes into components
+- Decided what things I should take into consideration while developing
+- Finally broke down the main task into smaller ones
 
+### Tests
 
--Tool and Library Selection: You're encouraged to leverage any libraries, frameworks, or tools that you believe will streamline the development process and enhance the quality of the final product. Whether it's a front-end framework like React.js or a design tool like Figma, choose what aligns best with your skillset and the project requirements.
+Tests can be run by using the `npm run test` command
 
--Approach to Task: Treat this technical test as you would a real-world project. Break down the task into manageable components, define clear objectives, and follow best practices for code organization, documentation, and testing. Your approach should reflect your ability to deliver high-quality work within a given timeframe.
+### Documentation (Storybook)
 
--Commit Log: Provide a detailed commit log that outlines your thought process, decisions, and implementation steps throughout the project. This allows reviewers to understand how you approached the task, the challenges you encountered, and how you resolved them. It also demonstrates your ability to work collaboratively and communicate effectively within a team setting.
+Storybook documentation can be run by using the `npm run storybook` command
 
--Long-Term Perspective: Consider this task as part of a larger project with potential for future iterations and enhancements. Your implementation should be flexible, scalable, and well-structured to accommodate additional functionalities or changes down the line. Think about how your codebase can be easily maintained and extended by other developers in the future.
-Overall, approach the task with professionalism, attention to detail, and a focus on delivering a high-quality solution that meets the project requirements and demonstrates your technical skills and expertise.
+### Challanges faced
 
-
-
-
- ### Submitting
-
-  To submit your finished project, share with us a link to a GitHub repository containing its code. Along with instructions on how to run the app, include answers to the following:
-
-- What part of building the project was the most difficult? Why?
-- How long did it take to have this test completed ? Which part of the test took you longer? Could you specify roughly the amount of time it took you to do the following:
-    - Set up environment    
-    - Search feature
-    - Filter feature
-    - Result display
-    - Other (please specify)
-
+1. installing shadcn on vite was quite nasty for a first try because I faced a time consuming error ~35'
+   because the command to initalize shadcn was using yarn behind npx and I didn't have yarn installed globally
