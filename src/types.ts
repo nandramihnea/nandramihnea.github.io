@@ -1,5 +1,12 @@
 import { NamedAPIResource, PokemonAbility, PokemonHeldItem, PokemonMove, PokemonSprites, PokemonStat, PokemonType, VersionGameIndex } from "pokenode-ts";
 
+export interface PokemonListEntry {
+  name: string;
+  url: string;
+}
+
+export interface PokemonList extends Array<PokemonListEntry> {}
+
 export interface Pokemon {
   /** The identifier for this resource */
   id: number;
