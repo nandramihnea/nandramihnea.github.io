@@ -16,3 +16,11 @@ In this image you can see what was my tought proccess during the ideation phase:
 - Broke down the routes into components
 - Decided what things I should take into consideration while developing
 - Finally broke down the main task into smaller ones
+
+### Tests
+
+Tests can be run by using the `npm run test` command
+
+### Documentation (Storybook)
+
+Storybook documentation can be run by using the `npm run storybook` command
