@@ -39,7 +39,7 @@ export default function Results() {
           key={item.name}
           onClick={() => navigateBasedOnId(item.url)}
         >
-          {item.name}
+          {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
         </li>
       ))}
     </ul>

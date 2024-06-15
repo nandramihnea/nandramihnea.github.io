@@ -1,8 +1,14 @@
-import Results from "@/components/results";
+import Filter from "@/components/filter";
+import Results from "@/components/results/results";
+import Search from "@/components/search";
 
 export default function List() {
   return (
-    <div>
+    <div className="">
+      <div className="flex justify-between border-b-2">
+        <Search />
+        <Filter />
+      </div>
       <Results />
     </div>
   );
