@@ -24,3 +24,8 @@ Tests can be run by using the `npm run test` command
 ### Documentation (Storybook)
 
 Storybook documentation can be run by using the `npm run storybook` command
+
+### Challanges faced
+
+1. installing shadcn on vite was quite nasty for a first try because I faced a time consuming error ~35'
+   because the command to initalize shadcn was using yarn behind npx and I didn't have yarn installed globally
