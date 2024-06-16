@@ -1,5 +1,4 @@
-import { PokemonClient } from 'pokenode-ts';
+import { EvolutionClient, PokemonClient } from 'pokenode-ts';
 
-const pokemonClient = new PokemonClient();
-
-export default pokemonClient;
+export const pokemonClient = new PokemonClient();
+export const evolutionClient = new EvolutionClient();

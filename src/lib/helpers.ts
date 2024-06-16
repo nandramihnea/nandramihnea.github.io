@@ -1,4 +1,4 @@
-import { NamedAPIResourceList } from "pokenode-ts";
+import { ChainLink, NamedAPIResourceList } from "pokenode-ts";
 import { PokemonListEntry } from "./types";
 
 export const getPokemonIdFromUrl = (url: string) => {
@@ -25,3 +25,23 @@ export const filterListBasedOnSearchValueOrType = (searchValue: string, list: Na
 
 export const capitaliseWord = (word: string) =>
   word.charAt(0).toUpperCase() + word.slice(1)
+
+export const createEvolutionChain = (evolutionChain: ChainLink) => {
+  const names:string[] = [];
+
+  // Helper function to recursively traverse the evolution chain
+  function traverse(chain: ChainLink) {
+      // Add the current species name to the array
+      names.push(chain.species.name);
+
+      // If there are evolutions, traverse them
+      chain.evolves_to.forEach(evolution => {
+          traverse(evolution);
+      });
+  }
+
+  // Start the traversal from the root of the chain
+  traverse(evolutionChain);
+
+  return names;
+}

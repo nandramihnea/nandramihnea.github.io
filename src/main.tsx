@@ -5,8 +5,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root";
 import ErrorPage from "./error-page";
 import List from "./routes/list/list";
-import New from "./routes/new";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Details from "./routes/details";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
   },
   {
     path: "list/:id",
-    element: <New />,
+    element: <Details />,
     errorElement: <ErrorPage />,
   },
 ]);
