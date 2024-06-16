@@ -18,13 +18,14 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchPokemonTypes } from "@/actions/actions";
 import { capitaliseWord } from "@/lib/helpers";
 import { filterLabelsName } from "@/lib/types";
-import { useContextHook } from "@/context/appContext";
+import { useSearchParams } from "react-router-dom";
 
 const otherFilters = [{ name: "Apple" }, { name: "Banana" }, { name: "Pear" }];
 
 export default function Filter() {
+  const [searchParams, setSearchParams] = useSearchParams({ q: "" });
+  const type = searchParams.get("type") || "";
   const [isOpen, setIsOpen] = useState(false);
-  const { filterValue, setFilterValue } = useContextHook();
 
   const { data: pokemonTypes } = useQuery({
     queryKey: ["pokemonTypes"],
@@ -36,7 +37,14 @@ export default function Filter() {
   };
 
   const handleValueChange = (newValue: string) => {
-    setFilterValue(newValue);
+    console.log("new val", newValue);
+    setSearchParams(
+      (prev) => {
+        prev.set("type", newValue);
+        return prev;
+      },
+      { replace: true }
+    );
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -55,7 +63,7 @@ export default function Filter() {
   }
 
   return (
-    <Select value={filterValue} onValueChange={handleValueChange}>
+    <Select value={type} onValueChange={handleValueChange}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Filter" />
       </SelectTrigger>

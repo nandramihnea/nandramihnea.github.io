@@ -1,19 +1,35 @@
 import Filter from "@/components/ui/filters/filter";
 import Results from "@/components/results/results";
 import Search from "@/components/search";
-import { AppProvider } from "@/context/appContext";
+import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 
 export default function List() {
+  const [, setSearchParams] = useSearchParams({ q: "", type: "" });
+
+  const handleClearFilters = () => {
+    setSearchParams({ q: "", type: "" });
+  };
+
   return (
-    <AppProvider>
-      <main className="max-w-screen-lg py-3 mx-auto">
-        <h1 className="pb-4 text-3xl">Pokedex</h1>
-        <div className="flex justify-between px-4 py-3 border-b-2">
+    <main className="max-w-screen-lg py-3 mx-auto">
+      <h1 className="pb-4 text-3xl">Pokedex</h1>
+      <div className="grid px-4 py-3 border-b-2 gap-y-2 ">
+        <div className="flex justify-between">
           <Search />
           <Filter />
         </div>
-        <Results />
-      </main>
-    </AppProvider>
+        <Button
+          onClick={handleClearFilters}
+          className="px-2 py-2 justify-self-end"
+          variant="link"
+        >
+          Remove filters
+          <X className="pl-1" />
+        </Button>
+      </div>
+      <Results />
+    </main>
   );
 }

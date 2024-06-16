@@ -1,5 +1,4 @@
 import { fetchPokemons } from "@/actions/actions";
-import { useContextHook } from "@/context/appContext";
 import {
   capitaliseWord,
   filterListBasedOnSearchValueOrType,
@@ -8,24 +7,27 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { NamedAPIResource } from "pokenode-ts";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function Results() {
+  const [searchParams] = useSearchParams({ q: "", type: "" });
+  const type = searchParams.get("type") || "";
+  const q = searchParams.get("q") || "";
+
   const navigate = useNavigate();
-  const { searchValue, filterValue } = useContextHook();
   const [filteredPokemons, setFilteredPokemons] = useState<
     NamedAPIResource[] | undefined
   >(undefined);
 
   useEffect(() => {
     const filterResult = filterListBasedOnSearchValueOrType(
-      searchValue,
+      q,
       pokemonList,
-      filterValue
+      type
     );
     setFilteredPokemons(filterResult);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchValue, filterValue]);
+  }, [q, type]);
 
   const { data: pokemonList } = useQuery({
     queryKey: ["pokemonList"],
