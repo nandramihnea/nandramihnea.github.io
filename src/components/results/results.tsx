@@ -1,6 +1,9 @@
 import { fetchPokemons } from "@/actions/actions";
-import { useSearch } from "@/context/appContext";
-import { PokemonListEntry } from "@/types";
+import { useContextHook } from "@/context/appContext";
+import {
+  filterListBasedOnSearchValue,
+  getPokemonIdFromUrl,
+} from "@/helpers/helpers";
 import { useQuery } from "@tanstack/react-query";
 import { NamedAPIResource } from "pokenode-ts";
 import { useEffect, useState } from "react";
@@ -8,14 +11,15 @@ import { useNavigate } from "react-router-dom";
 
 export default function Results() {
   const navigate = useNavigate();
-  const { searchValue } = useSearch();
+  const { searchValue } = useContextHook();
   const [filteredPokemons, setFilteredPokemons] = useState<
     NamedAPIResource[] | undefined
   >(undefined);
 
   useEffect(() => {
-    const filterResult = filterListBasedOnSearchValue();
+    const filterResult = filterListBasedOnSearchValue(searchValue, pokemonList);
     setFilteredPokemons(filterResult);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
 
   const { data: pokemonList } = useQuery({
@@ -23,25 +27,9 @@ export default function Results() {
     queryFn: fetchPokemons,
   });
 
-  const getPokemonIdFromUrl = (url: string) => {
-    const parts = url.split("/").filter((part) => part !== "");
-    const id = parts[parts.length - 1];
-    return id;
-  };
-
   const navigateBasedOnId = (url: string) => {
     const id = getPokemonIdFromUrl(url);
     navigate(`/list/${id}`);
-  };
-
-  const filterListBasedOnSearchValue = () => {
-    if (searchValue === "") return pokemonList?.results;
-
-    const filterResult = pokemonList?.results.filter(
-      (pokemon: PokemonListEntry) =>
-        pokemon.name.toLowerCase().includes(searchValue.toLowerCase())
-    );
-    return filterResult;
   };
 
   if (!pokemonList?.results.length) {
