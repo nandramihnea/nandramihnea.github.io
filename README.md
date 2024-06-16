@@ -1,6 +1,6 @@
 # Nuant FE Test - nandramihnea version
 
-Demo link: [Tailwind](https://tailwindcss.com/)
+Demo link: [Demo](https://nandramihnea.github.io)
 
 In this repo you will find everything you need to know about how I went on implementing the task.
 Starting from ideation phase to implementation and deployment in the end.
