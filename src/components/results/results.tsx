@@ -2,9 +2,9 @@ import { fetchPokemons } from "@/actions/actions";
 import { useContextHook } from "@/context/appContext";
 import {
   capitaliseWord,
-  filterListBasedOnSearchValue,
+  filterListBasedOnSearchValueOrType,
   getPokemonIdFromUrl,
-} from "@/helpers/helpers";
+} from "@/lib/helpers";
 import { useQuery } from "@tanstack/react-query";
 import { NamedAPIResource } from "pokenode-ts";
 import { useEffect, useState } from "react";
@@ -12,16 +12,20 @@ import { useNavigate } from "react-router-dom";
 
 export default function Results() {
   const navigate = useNavigate();
-  const { searchValue } = useContextHook();
+  const { searchValue, filterValue } = useContextHook();
   const [filteredPokemons, setFilteredPokemons] = useState<
     NamedAPIResource[] | undefined
   >(undefined);
 
   useEffect(() => {
-    const filterResult = filterListBasedOnSearchValue(searchValue, pokemonList);
+    const filterResult = filterListBasedOnSearchValueOrType(
+      searchValue,
+      pokemonList,
+      filterValue
+    );
     setFilteredPokemons(filterResult);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchValue]);
+  }, [searchValue, filterValue]);
 
   const { data: pokemonList } = useQuery({
     queryKey: ["pokemonList"],

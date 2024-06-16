@@ -6,13 +6,14 @@ import { AppProvider } from "@/context/appContext";
 export default function List() {
   return (
     <AppProvider>
-      <div className="max-w-screen-lg mx-auto">
+      <main className="max-w-screen-lg py-3 mx-auto">
+        <h1 className="pb-4 text-3xl">Pokedex</h1>
         <div className="flex justify-between px-4 py-3 border-b-2">
           <Search />
           <Filter />
         </div>
         <Results />
-      </div>
+      </main>
     </AppProvider>
   );
 }

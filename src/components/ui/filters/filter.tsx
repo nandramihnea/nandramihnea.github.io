@@ -16,13 +16,15 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPokemonTypes } from "@/actions/actions";
-import { capitaliseWord } from "@/helpers/helpers";
-import { filterLabelsName } from "@/helpers/types";
+import { capitaliseWord } from "@/lib/helpers";
+import { filterLabelsName } from "@/lib/types";
+import { useContextHook } from "@/context/appContext";
 
 const otherFilters = [{ name: "Apple" }, { name: "Banana" }, { name: "Pear" }];
 
 export default function Filter() {
   const [isOpen, setIsOpen] = useState(false);
+  const { filterValue, setFilterValue } = useContextHook();
 
   const { data: pokemonTypes } = useQuery({
     queryKey: ["pokemonTypes"],
@@ -31,6 +33,10 @@ export default function Filter() {
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleValueChange = (newValue: string) => {
+    setFilterValue(newValue);
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -49,7 +55,7 @@ export default function Filter() {
   }
 
   return (
-    <Select>
+    <Select value={filterValue} onValueChange={handleValueChange}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Filter" />
       </SelectTrigger>
