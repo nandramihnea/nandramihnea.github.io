@@ -42,7 +42,6 @@ export default function Filter() {
   };
 
   const handleValueChange = (newValue: string) => {
-    console.log("new val", newValue);
     setSearchParams(
       (prev) => {
         prev.set("type", newValue);
@@ -69,17 +68,17 @@ export default function Filter() {
 
   return (
     <Select value={type} onValueChange={handleValueChange}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-[180px] bg-slate-800">
         <SelectValue placeholder="Filter" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="bg-slate-800 text-slate-100">
         {Object.entries(filters).map(([key, value]) => (
           <SelectGroup key={key}>
             <Collapsible
               open={openCollapsibles[key] || false}
               onOpenChange={() => handleToggle(key)}
             >
-              <CollapsibleTrigger className="flex items-center justify-between w-full">
+              <CollapsibleTrigger className="flex items-center justify-between w-full text-slate-500">
                 <SelectLabel>
                   {filterLabels[key as filterLabelsName] || key}
                 </SelectLabel>

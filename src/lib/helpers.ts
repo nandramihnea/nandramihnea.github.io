@@ -14,8 +14,6 @@ export const filterListBasedOnSearchValueOrType = (searchValue: string, list: Na
     (pokemon: PokemonListEntry) =>
       pokemon.name.toLowerCase().includes(searchValue.toLowerCase())
   );
-  console.log('filterByName', filterByName);
-  console.log('filterValue', filterValue);
 
   // const filterByType = filterByName?.filter((pokemon: PokemonListEntry) =>
   // pokemon.name.toLowerCase())
