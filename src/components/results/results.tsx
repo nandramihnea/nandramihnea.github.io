@@ -1,6 +1,7 @@
 import { fetchPokemons } from "@/actions/actions";
 import { useContextHook } from "@/context/appContext";
 import {
+  capitaliseWord,
   filterListBasedOnSearchValue,
   getPokemonIdFromUrl,
 } from "@/helpers/helpers";
@@ -42,7 +43,7 @@ export default function Results() {
       key={item.name}
       onClick={() => navigateBasedOnId(item.url)}
     >
-      {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
+      {capitaliseWord(item.name)}
     </li>
   ));
 
@@ -52,7 +53,7 @@ export default function Results() {
       key={item.name}
       onClick={() => navigateBasedOnId(item.url)}
     >
-      {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
+      {capitaliseWord(item.name)}
     </li>
   ));
 

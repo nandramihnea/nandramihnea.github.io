@@ -1,4 +1,4 @@
-import Filter from "@/components/filter";
+import Filter from "@/components/ui/filters/filter";
 import Results from "@/components/results/results";
 import Search from "@/components/search";
 import { AppProvider } from "@/context/appContext";

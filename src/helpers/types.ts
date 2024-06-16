@@ -5,6 +5,8 @@ export interface PokemonListEntry {
   url: string;
 }
 
+export type filterLabelsName = "pokemonTypes" | "otherFilters";
+
 export interface PokemonList extends Array<PokemonListEntry> {}
 
 export interface Pokemon {

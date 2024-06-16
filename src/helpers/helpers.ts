@@ -1,5 +1,5 @@
-import { PokemonListEntry } from "@/types";
 import { NamedAPIResourceList } from "pokenode-ts";
+import { PokemonListEntry } from "./types";
 
 export const getPokemonIdFromUrl = (url: string) => {
   const parts = url.split("/").filter((part) => part !== "");
@@ -16,3 +16,6 @@ export const filterListBasedOnSearchValue = (searchValue: string, list: NamedAPI
   );
   return filterResult;
 };
+
+export const capitaliseWord = (word: string) =>
+  word.charAt(0).toUpperCase() + word.slice(1)
