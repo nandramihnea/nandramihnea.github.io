@@ -25,19 +25,23 @@ const otherFilters = [{ name: "Apple" }, { name: "Banana" }, { name: "Pear" }];
 export default function Filter() {
   const [searchParams, setSearchParams] = useSearchParams({ q: "" });
   const type = searchParams.get("type") || "";
-  const [isOpen, setIsOpen] = useState(false);
+  const [openCollapsibles, setOpenCollapsibles] = useState<{
+    [key: string]: boolean;
+  }>({});
 
   const { data: pokemonTypes } = useQuery({
     queryKey: ["pokemonTypes"],
     queryFn: fetchPokemonTypes,
   });
 
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
+  const handleToggle = (key: string) => {
+    setOpenCollapsibles((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
   };
 
   const handleValueChange = (newValue: string) => {
-    console.log("new val", newValue);
     setSearchParams(
       (prev) => {
         prev.set("type", newValue);
@@ -64,18 +68,21 @@ export default function Filter() {
 
   return (
     <Select value={type} onValueChange={handleValueChange}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-[180px] bg-slate-800">
         <SelectValue placeholder="Filter" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="bg-slate-800 text-slate-100">
         {Object.entries(filters).map(([key, value]) => (
           <SelectGroup key={key}>
-            <Collapsible open={isOpen} onOpenChange={handleToggle}>
-              <CollapsibleTrigger className="flex items-center justify-between w-full">
+            <Collapsible
+              open={openCollapsibles[key] || false}
+              onOpenChange={() => handleToggle(key)}
+            >
+              <CollapsibleTrigger className="flex items-center justify-between w-full text-slate-500">
                 <SelectLabel>
                   {filterLabels[key as filterLabelsName] || key}
                 </SelectLabel>
-                {isOpen ? (
+                {openCollapsibles[key] ? (
                   <ChevronUp className="pr-2" />
                 ) : (
                   <ChevronDown className="pr-2" />

@@ -24,7 +24,7 @@ export default function Search() {
     <Input
       type="search"
       placeholder="Search by name"
-      className="max-w-[300px]"
+      className="max-w-[300px] bg-slate-800 placeholder:text-slate-400"
       onChange={handleInputChange}
       value={q}
     />
