@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 vi.mock("react-router-dom", () => ({
   useNavigate: vi.fn(),
+  useSearchParams: vi.fn(),
 }));
 
 const queryClient = new QueryClient();

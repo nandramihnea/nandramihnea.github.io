@@ -65,12 +65,12 @@ export default function Details() {
           <span>{pokemon.height}m</span>
           <span>{pokemon.weight}kg</span>
           {pokemon.types.map((type: PokemonType) => (
-            <span>{type.type.name}</span>
+            <span key={type.type.url}>{type.type.name}</span>
           ))}
         </div>
         <div className="grid grid-cols-2">
-          {pokemon.stats.map((pokemonStat: PokemonStat) => (
-            <span>
+          {pokemon.stats.map((pokemonStat: PokemonStat, index) => (
+            <span key={index}>
               {pokemonStat.stat.name}: {pokemonStat.base_stat}
             </span>
           ))}
@@ -78,7 +78,7 @@ export default function Details() {
         <div>
           <span>Evolution chain: </span>
           {evolutions.map((name) => (
-            <span>
+            <span key={name}>
               {capitaliseWord(name)}
               {"->"}
             </span>

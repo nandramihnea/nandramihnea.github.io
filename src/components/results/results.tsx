@@ -48,6 +48,7 @@ export default function Results() {
       className="px-10 py-4 my-1 border cursor-pointer"
       key={item.name}
       onClick={() => navigateBasedOnId(item.url)}
+      data-testid="list"
     >
       {capitaliseWord(item.name)}
     </li>
@@ -58,6 +59,7 @@ export default function Results() {
       className="px-10 py-4 my-1 border cursor-pointer"
       key={item.name}
       onClick={() => navigateBasedOnId(item.url)}
+      data-testid="list"
     >
       {capitaliseWord(item.name)}
     </li>
