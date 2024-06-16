@@ -29,7 +29,7 @@ export default function Results() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q, type]);
 
-  const { data: pokemonList } = useQuery({
+  const { data: pokemonList, isLoading } = useQuery({
     queryKey: ["pokemonList"],
     queryFn: fetchPokemons,
   });
@@ -67,7 +67,13 @@ export default function Results() {
 
   return (
     <ul className="pt-2">
-      {filteredPokemons ? filteredPokemonsDiv : pokemonListDiv}
+      {isLoading ? (
+        <p>"Loading"</p>
+      ) : filteredPokemons ? (
+        filteredPokemonsDiv
+      ) : (
+        pokemonListDiv
+      )}
     </ul>
   );
 }

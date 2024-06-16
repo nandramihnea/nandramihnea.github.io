@@ -25,15 +25,20 @@ const otherFilters = [{ name: "Apple" }, { name: "Banana" }, { name: "Pear" }];
 export default function Filter() {
   const [searchParams, setSearchParams] = useSearchParams({ q: "" });
   const type = searchParams.get("type") || "";
-  const [isOpen, setIsOpen] = useState(false);
+  const [openCollapsibles, setOpenCollapsibles] = useState<{
+    [key: string]: boolean;
+  }>({});
 
   const { data: pokemonTypes } = useQuery({
     queryKey: ["pokemonTypes"],
     queryFn: fetchPokemonTypes,
   });
 
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
+  const handleToggle = (key: string) => {
+    setOpenCollapsibles((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
   };
 
   const handleValueChange = (newValue: string) => {
@@ -70,12 +75,15 @@ export default function Filter() {
       <SelectContent>
         {Object.entries(filters).map(([key, value]) => (
           <SelectGroup key={key}>
-            <Collapsible open={isOpen} onOpenChange={handleToggle}>
+            <Collapsible
+              open={openCollapsibles[key] || false}
+              onOpenChange={() => handleToggle(key)}
+            >
               <CollapsibleTrigger className="flex items-center justify-between w-full">
                 <SelectLabel>
                   {filterLabels[key as filterLabelsName] || key}
                 </SelectLabel>
-                {isOpen ? (
+                {openCollapsibles[key] ? (
                   <ChevronUp className="pr-2" />
                 ) : (
                   <ChevronDown className="pr-2" />
