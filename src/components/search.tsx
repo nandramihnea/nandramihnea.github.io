@@ -13,7 +13,6 @@ export default function Search() {
   };
 
   useEffect(() => {
-    // fetch pokemons by name
     setSearchValue(debouncedValue);
   }, [debouncedValue]);
 
